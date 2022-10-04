@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+    {% for route in routes  %}
+    <div class="route_body">
+        <h5><a class="route_title">Route info</a></h5>
+        <p class="card-text">Start point: {{ route.start_point }}</p>
+        <p class="card-text">Destination : {{ route.destination }}</p>
+        <p class="card-text">Country: {{ route.country }}</p>
+        <p class="card-text">Location: {{ route.location }}</p>
+        <p class="card-text">Description: {{ route.description }}</p>
+        <p class="card-text">Route type: {{ route.route_type }}</p>
+        <p class="card-text">Duration: {{ route.duration }}</p>
+    </div>
+    {% endfor %}
+    {% if routes.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page{{ routes.previous_page_number}}">Privious</a>
+        {% endif %}
+    {% for num in routes.paginator.page_range %}
+            {% if routes.number == num %}
+                <a class="btn btn-info mb-4" href="?page{{ num }}">{{ num }}</a>
+            {% elif num > routes.number|add:'-1' and  num < routes.number|add:'1' %}
+              <a class="btn btn-info mb-4" href="?page{{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if routes.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{routes.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page{{ routes.paginator.num_pages }}">Last</a>
+        {% endif %}
+{% endblock content %}
+<body>
+    <button onclick="window.location.href='http://127.0.0.1:8000/app/create_route'" >
+    Create Route
+    </button>
+</body>

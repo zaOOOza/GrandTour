@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="create_route.html" method="POST">
+     {% csrf_token %}
+    <div>
+        <label for="start_point">Choose start point?</label>
+        <input name="start_point" id="start_point" value="">
+    </div>
+
+    <div>
+        <label for="destination">Choose end point?</label>
+        <input name="destination" id="destination" value="">
+    </div>
+
+    <div>
+        <label for="country">Which one Country?</label>
+        <input name="country" id="country" value="">
+    </div>
+
+    <div>
+        <label for="location">Which one location?</label>
+        <input name="location" id="location" value="">
+    </div>
+    <div>
+        <label for="description">Description?</label>
+        <input name="description" id="description" value="">
+    </div>
+    <div>
+        <label for="duration">How long?</label>
+        <input name="duration" id="duration" value="">
+    </div>
+    <div>
+        <label for="route_type">Wich one route type?</label>
+        <input name="route_type" id="route_type" value="">
+    </div>
+    <div>
+        <button>Send my greetings</button>
+    </div>
+</form>
+</body>
+</html>
+<body>
+    <button onclick="window.location.href='http://127.0.0.1:8000/info'">
+    Route Info
+    </button>
+</body>
