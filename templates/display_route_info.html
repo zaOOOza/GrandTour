@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Display info about route</h1>{% csrf_token %}
+<lable class="123">Select country</lable>
+<br>
+<select>
+
+    <option disabled="True" selected>---select route---</option>
+    {% for result in details %}
+        <option>{{ result.country }}</option>
+    {% endfor %}
+    </select>
+    {% for object in result %}
+        <tr>
+            <td>{{ object }}</td>
+        </tr>
+    {% endfor %}
+    <form action="info">
+    <button>Submit</button>
+    </form>
+
+
+</table>
+</body>
+</html>

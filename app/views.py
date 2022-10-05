@@ -4,7 +4,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-
 from app import models
 from app.models import Route
 
@@ -53,16 +52,29 @@ def route_filter(request, route_type=None, country=None, location=None):
     return HttpResponse([{'country': itm.country, 'id': itm.id} for itm in result])
 
 
+# Info about chosen route
+# to doo , show all info about select route!!!
 def route_detail(request, id_route):
-    result = models.Route.objects.all().filter(id=id_route)
-    return HttpResponse([{'country': itm.country, 'id': itm.id} for itm in result])
+    result = models.Route.objects.all()
+    return render(request, "display_route_info.html", {'details': result})
 
 
+# info about all routes
+def route_info(request):
+    route = Route.objects.all()
+    paginator = Paginator(route, 3)
+    page = request.GET.get('page')
+    route = paginator.get_page(page)
+    return render(request, 'route_info.html', {'routes': route})
+
+
+# Info about rating route
 def route_review(request, id_route):
-    result = models.Review.objects.all().filter(route_id=id_route)
-    return HttpResponse([{'route_id': itm.route_id, 'review_rate': itm.review_rate} for itm in result])
+    review = models.Review.objects.all().filter(route_id=id_route)
+    return render(request, 'route_review.html', {'reviews': review})
 
 
+# Add new event to DataBase
 def add_route_event(request, id_route):
     if request.method == 'GET':
         return render(request, 'add_route_event.html')
@@ -81,10 +93,12 @@ def add_route_event(request, id_route):
     return HttpResponse(f'<h3>{id_route}, add route event</h3>')
 
 
+# To do ...
 def event_handler(request, id_route):
     return HttpResponse(f'<h3>{id_route}, event handler</h3>')
 
 
+# Init user login
 def user_login(request):
     if not request.user.is_authenticated:
         if request.method == 'GET':
@@ -102,6 +116,7 @@ def user_login(request):
         return HttpResponse('<a href="logout">logout</a>')
 
 
+# Init user registration and add in to DataBase info about
 def user_registration(request):
     if request.method == 'GET':
         return render(request, 'registration.html')
@@ -119,12 +134,3 @@ def user_registration(request):
 def logout_user(request):
     logout(request)
     return redirect('/login')
-
-
-def route_info(request):
-    route = Route.objects.all()
-    paginator = Paginator(route, 3)
-    page = request.GET.get('page')
-    route = paginator.get_page(page)
-    return render(request, 'route_info.html', {'routes': route})
-
