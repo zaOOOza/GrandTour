@@ -9,6 +9,9 @@ from app.models import Route
 
 
 # Create your views here.
+def index(request):
+    return render(request, 'index.html')
+
 
 def create_route(request):
     if request.method == 'GET':
@@ -49,7 +52,7 @@ def route_filter(request, route_type=None, country=None, location=None):
         query_filter['location'] = location
 
     result = models.Route.objects.all().filter(**query_filter)
-    return HttpResponse([{'country': itm.country, 'id': itm.id} for itm in result])
+    return render(request, 'filter_route.html', {'result': result})
 
 
 # Info about chosen route

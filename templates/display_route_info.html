@@ -8,20 +8,15 @@
 <h1>Display info about route</h1>{% csrf_token %}
 <lable class="123">Select country</lable>
 <br>
-<select>
+    <select>
 
     <option disabled="True" selected>---select route---</option>
     {% for result in details %}
         <option>{{ result.country }}</option>
     {% endfor %}
     </select>
-    {% for object in result %}
-        <tr>
-            <td>{{ object }}</td>
-        </tr>
-    {% endfor %}
-    <form action="info">
-    <button>Submit</button>
+    <form action="" method="POST">
+    <button type="submit" name="submit">Submit</button>
     </form>
 
 
