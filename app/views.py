@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -9,35 +10,37 @@ from app.models import Route
 
 
 # Create your views here.
-
-
+@login_required(login_url='login')
 def create_route(request):
-    if request.method == 'GET':
-        return render(request, 'create_route.html')
-    if request.method == 'POST':
-        start_point = request.POST.get('start_point')
-        destination = request.POST.get('destination')
-        country = request.POST.get('country')
-        location = request.POST.get('location')
-        description = request.POST.get('description')
-        route_type = request.POST.get('route_type')
-        duration = request.POST.get('duration')
+    if request.user.has_perm('create_route'):
+        if request.method == 'GET':
+            return render(request, 'create_route.html')
+        if request.method == 'POST':
+            start_point = request.POST.get('start_point')
+            destination = request.POST.get('destination')
+            country = request.POST.get('country')
+            location = request.POST.get('location')
+            description = request.POST.get('description')
+            route_type = request.POST.get('route_type')
+            duration = request.POST.get('duration')
 
-        str_object = models.Places.objects.get(name=start_point)
-        dest_obj = models.Places.objects.get(name=destination)
+            str_object = models.Places.objects.get(name=start_point)
+            dest_obj = models.Places.objects.get(name=destination)
 
-        new_route = models.Route(
-            start_point=str_object.id,
-            destination=dest_obj.id,
-            country=country,
-            location=location,
-            description=description,
-            route_type=route_type,
-            duration=duration,
-            stopping_point={}
-        )
-        new_route.save()
-    return HttpResponse('create route')
+            new_route = models.Route(
+                start_point=str_object.id,
+                destination=dest_obj.id,
+                country=country,
+                location=location,
+                description=description,
+                route_type=route_type,
+                duration=duration,
+                stopping_point={}
+            )
+            new_route.save()
+        return HttpResponse('create route')
+    else:
+        return HttpResponse('No access')
 
 
 def route_filter(request, route_type=None, country=None, location=None):
@@ -72,22 +75,26 @@ def route_review(request, id_route):
 
 
 # Add new event to DataBase
+@login_required(login_url='login')
 def add_route_event(request, id_route):
-    if request.method == 'GET':
-        return render(request, 'add_route_event.html')
-    if request.method == 'POST':
-        start_date = request.POST.get('start_date')
-        price = request.POST.get('price')
-        new_event = models.Event(
-            id_route=id_route,
-            start_date=start_date,
-            price=price,
-            event_admin=1,
-            approved_user=[],
-            pending_user=[]
-        )
-        new_event.save()
-        return redirect('/info')
+    if request.user.has_perm('add_route'):
+        if request.method == 'GET':
+            return render(request, 'add_route_event.html')
+        if request.method == 'POST':
+            start_date = request.POST.get('start_date')
+            price = request.POST.get('price')
+            new_event = models.Event(
+                id_route=id_route,
+                start_date=start_date,
+                price=price,
+                event_admin=1,
+                approved_user=[],
+                pending_user=[]
+            )
+            new_event.save()
+            return redirect('/info')
+    else:
+        return HttpResponse('No access')
 
 
 # To do ...
