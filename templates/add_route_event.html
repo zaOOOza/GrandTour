@@ -5,14 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<form action="add_event" method="POST">
+<form action="/info" method="POST">
     {% csrf_token %}
     <div>
         <label for="start_date">Choose start date?</label>
         <input name="start_date" id="start_date" value="">
     </div>
     <div>
-        <label for="price">Choose start point?</label>
+        <label for="price">Add price?</label>
         <input name="price" id="price" value="">
     </div>
     <div>

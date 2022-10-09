@@ -9,8 +9,6 @@ from app.models import Route
 
 
 # Create your views here.
-def index(request):
-    return render(request, 'index.html')
 
 
 def create_route(request):
@@ -55,20 +53,16 @@ def route_filter(request, route_type=None, country=None, location=None):
     return render(request, 'filter_route.html', {'result': result})
 
 
-# Info about chosen route
-# to doo , show all info about select route!!!
-def route_detail(request, id_route):
-    result = models.Route.objects.all()
-    return render(request, "display_route_info.html", {'details': result})
-
-
 # info about all routes
 def route_info(request):
-    route = Route.objects.all()
-    paginator = Paginator(route, 3)
-    page = request.GET.get('page')
-    route = paginator.get_page(page)
-    return render(request, 'route_info.html', {'routes': route})
+    if request.user.is_authenticated:
+        route = Route.objects.all()
+        paginator = Paginator(route, 3)
+        page = request.GET.get('page')
+        route = paginator.get_page(page)
+        return render(request, 'route_info.html', {'routes': route})
+    else:
+        return redirect('')
 
 
 # Info about rating route
@@ -93,12 +87,14 @@ def add_route_event(request, id_route):
             pending_user=[]
         )
         new_event.save()
-    return HttpResponse(f'<h3>{id_route}, add route event</h3>')
+        return redirect('/info')
 
 
 # To do ...
-def event_handler(request, id_route):
-    return HttpResponse(f'<h3>{id_route}, event handler</h3>')
+def event_handler(request, event_id):
+    if request.method == 'GET':
+        event = models.Event.objects.all().filter(id_route=event_id)
+        return render(request, 'event_heandler.html', {'event': event})
 
 
 # Init user login
@@ -112,11 +108,11 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponse('User is login')
+                return redirect('/info')
             else:
-                return HttpResponse('No User'), redirect('/login')
+                return redirect('/login')
     else:
-        return HttpResponse('<a href="logout">logout</a>')
+        return redirect('/info')
 
 
 # Init user registration and add in to DataBase info about
@@ -124,14 +120,18 @@ def user_registration(request):
     if request.method == 'GET':
         return render(request, 'registration.html')
     if request.method == 'POST':
-        user = User.objects.create_user(username=request.POST.get('username'),
-                                        password=request.POST.get('password'),
-                                        email=request.POST.get('email'),
-                                        first_name=request.POST.get('first_name'),
-                                        last_name=request.POST.get('last_name')
-                                        )
-        user.save()
-        return HttpResponse('User is create'), redirect('/login')
+        chek = request.POST.get('username')
+        if chek is None:
+            user = User.objects.create_user(username=request.POST.get('username'),
+                                            password=request.POST.get('password'),
+                                            email=request.POST.get('email'),
+                                            first_name=request.POST.get('first_name'),
+                                            last_name=request.POST.get('last_name')
+                                            )
+            user.save()
+            return redirect('/login')
+        else:
+            return redirect('/registration')
 
 
 def logout_user(request):

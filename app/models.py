@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy
+from django.utils import timezone
 
 
 # Create your models here.
@@ -36,7 +37,7 @@ class Event(models.Model):
     event_admin = models.IntegerField()
     approved_user = models.JSONField()
     pending_user = models.JSONField()
-    start_date = models.DateField()
+    start_date = models.TextField(default=timezone.now)
     price = models.IntegerField()
 
 

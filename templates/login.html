@@ -5,8 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<form action="info" method="post">
-    {% csrf_token %}
+
+<form action="/login" method="post">{% csrf_token %}
+
 
     <div class="container">
         <label for="uname"><b>Username</b></label>
@@ -17,7 +18,8 @@
         <br>
         <button type="submit">Login</button>
     </div>
-    <a href="logout">logout</a>
+    <a href="/logout">logout</a>
+    <a href="/registration">Registration</a>
 </form>
 </body>
 </html>

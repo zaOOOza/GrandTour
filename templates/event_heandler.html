@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    {% for el in event %}
+        <div class="event_handler">{% csrf_token %}
+            <h5><a class="event">Event info</a></h5>
+            <p class="card-text">Admin: {{ el.event_admin }}</p>
+            <p class="card-text">Approved: {{ el.approved_user }}</p>
+            <p class="card-text">Pending: {{ el.pending_user }}</p>
+            <p class="card-text">Start date: {{ el.start_date }}</p>
+            <p class="card-text">Price: {{ el.price }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}
+<button onclick="window.location.href='http://127.0.0.1:8000/info'">
+    All route
+</button>
+
+</body>
+</html>
