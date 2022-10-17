@@ -12,8 +12,10 @@
         <ul>
             {% for itm in result %}
             <li>
-                {"route_type": "{{ itm.route_type }}", "country": "{{ itm.country }}",
-                "location": "{{ itm.location }}"}
+                {Country: {{ itm.country }}, Location: {{ itm.location }},
+                Description: {{ itm.descriprtion }}, Duration: {{ itm.duration }},
+                Stop point: {{ itm.stopping_point }}, Route type: {{ itm.route_type }},
+                Start: {{ itm.start }}, Finish: {{ itm.finish }}}
             </li>
             {% endfor %}
         </ul>

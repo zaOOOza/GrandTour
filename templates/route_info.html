@@ -10,22 +10,12 @@
 <button onclick="window.location.href='http://127.0.0.1:8000/logout'">Logout</button>
 <button onclick="window.location.href='http://127.0.0.1:8000/app/create_route'">Create Route</button>
 <button onclick="window.location.href='http://127.0.0.1:8000/app/1/add_event'">Add event</button>
-<button onclick="window.location.href='http://127.0.0.1:8000/app/1/review'">Review</button><br>
-{% block filter %}
-<label class="filter">Select route type</label>
-    <select>
-        <option disabled="True" selected > Select route type</option><br>
-            {% for filter in routes %}
-                <option id="filter">{{ filter.route_type }}</option>
-            {% endfor %}
-    </select>
-       <form  action="/app/" method="POST">{% csrf_token %}
-            <input  type="submit" value="Filter" name="filter" id="filter">
-        </form>
-
-{% endblock filter %}
-
-
+<button onclick="window.location.href='http://127.0.0.1:8000/app/1/review'">Review</button>
+<br>
+{% for itm in routes %}
+<a href="{% url 'route:route_type' itm.route_type %}"
+   class="btn btn-sm">filter</a>
+   {% endfor %}
 
 
 

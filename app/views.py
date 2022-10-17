@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.db import connection
 
 from app import models
 from app.models import Route
@@ -44,16 +45,46 @@ def create_route(request):
 
 
 def route_filter(request, route_type=None, country=None, location=None):
-    query_filter = {}
+    cursor = connection.cursor()
+    query_filter = []
     if route_type is not None:
-        query_filter['route_type'] = route_type
+        query_filter.append(f"route_type='{route_type}'")
     if country is not None:
-        query_filter['country'] = country
+        query_filter.append(f"country='{country}'")
     if location is not None:
-        query_filter['location'] = location
+        query_filter.append(f"location='{location}'")
 
-    result = models.Route.objects.all().filter(**query_filter)
-    return render(request, 'filter_route.html', {'result': result})
+    filter_string = ' and '.join(query_filter)
+    join_start = """ SELECT
+    app_route.country,
+    app_route.location,
+    app_route.description,
+    app_route.duration,
+    app_route.stopping_point,
+    app_route.route_type,
+    start.name,
+    finish.name
+    FROM app_route
+    JOIN app_places as start on 
+    start.id = app_route.start_point
+    
+    JOIN app_places as finish on 
+    finish.id = app_route.destination
+    WHERE """ + filter_string
+
+    cursor.execute(join_start)
+    result = cursor.fetchall()
+
+    dict_result = [{'country': i[0],
+                    'location': i[1],
+                    'description': i[2],
+                    'duration': i[3],
+                    'stop_point': i[4],
+                    'route_type': i[5],
+                    'start': i[6],
+                    'finish': i[7]} for i in result]
+
+    return render(request, 'filter_route.html', {'result': dict_result})
 
 
 # info about all routes
