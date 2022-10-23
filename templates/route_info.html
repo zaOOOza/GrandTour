@@ -9,28 +9,32 @@
 <button onclick="window.location.href='http://127.0.0.1:8000/login'">Login</button>
 <button onclick="window.location.href='http://127.0.0.1:8000/logout'">Logout</button>
 <button onclick="window.location.href='http://127.0.0.1:8000/app/create_route'">Create Route</button>
-<button onclick="window.location.href='http://127.0.0.1:8000/app/1/add_event'">Add event</button>
-<button onclick="window.location.href='http://127.0.0.1:8000/app/1/review'">Review</button>
 <br>
-{% for itm in routes %}
-<a href="{% url 'route:route_type' itm.route_type %}"
+{% for route in routes %}
+<a href="{% url 'route:route_type' route.route_type %}"
    class="btn btn-sm">filter</a>
    {% endfor %}
-
-
+    <form action="app/1/add_event">
+        <input type="submit" value="Add event" name="review">
+    </form>
 
 {% block content %}
     {% for route in routes %}
         <div class="route_body">
             <h5><a class="route_title">Route info</a></h5>
-            <form action="/event/{{ route.id }}? ">
-                <input type="submit" value="More info" name="event">
+            <form action="/app/{{ route.id }}/review">
+                <input type="submit" value="Review" name="review">
             </form>
             <p class="card-text">Country: {{ route.country }}</p>
             <p class="card-text">Location: {{ route.location }}</p>
             <p class="card-text">Description: {{ route.description }}</p>
-            <p class="card-text">Route type: {{ route.route_type }}</p>
             <p class="card-text">Duration: {{ route.duration }}</p>
+            <p class="card-text">Route type: {{ route.route_type }}</p>
+            <p class="card-text">Event admin: {{ route.event_admin }}</p>
+            <p class="card-text">Approved User: {{ route.approved_user }}</p>
+            <p class="card-text">Pending User: {{ route.pending_user }}</p>
+            <p class="card-text">Price: {{ route.price }}</p>
+            <p class="card-text">Start date: {{ route.start_date }}</p>
         </div>
     {% endfor %}
     {% if routes.has_previous %}

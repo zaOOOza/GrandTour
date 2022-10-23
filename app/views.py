@@ -1,3 +1,5 @@
+
+
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -38,8 +40,11 @@ def create_route(request):
                 duration=duration,
                 stopping_point={}
             )
-            new_route.save()
-        return HttpResponse('create route')
+            if new_route in models.Route.objects.all():
+                return redirect('/app/create_route')
+            else:
+                new_route.save()
+                return redirect('/info')
     else:
         return HttpResponse('No access')
 
@@ -90,13 +95,45 @@ def route_filter(request, route_type=None, country=None, location=None):
 # info about all routes
 def route_info(request):
     if request.user.is_authenticated:
-        route = Route.objects.all()
+        cursor = connection.cursor()
+        info = """ SELECT
+        app_route.id,
+        app_route.country,
+        app_route.location,
+        app_route.description,
+        app_route.duration,
+        app_route.stopping_point,
+        app_route.route_type,
+        app_event.event_admin,
+        app_event.approved_user,
+        app_event.pending_user,
+        app_event.price,
+        app_event.start_date
+        FROM app_route 
+        JOIN app_event on 
+        app_route.id = app_event.id
+        """
+        cursor.execute(info)
+        result = cursor.fetchall()
+        route = [{'id': i[0],
+                  'country': i[1],
+                  'location': i[2],
+                  'description': i[3],
+                  'duration': i[4],
+                  'stop_point': i[5],
+                  'route_type': i[6],
+                  'event_admin': i[7],
+                  'approved_user': i[8],
+                  'pending_user': i[9],
+                  'price': i[10],
+                  'start_date': i[11]} for i in result]
+
         paginator = Paginator(route, 3)
         page = request.GET.get('page')
         route = paginator.get_page(page)
         return render(request, 'route_info.html', {'routes': route})
     else:
-        return redirect('')
+        return redirect('/login')
 
 
 # Info about rating route
@@ -114,16 +151,20 @@ def add_route_event(request, id_route):
         if request.method == 'POST':
             start_date = request.POST.get('start_date')
             price = request.POST.get('price')
+            user_name = request.user.id
             new_event = models.Event(
                 id_route=id_route,
                 start_date=start_date,
                 price=price,
-                event_admin=1,
+                event_admin=user_name,
                 approved_user=[],
                 pending_user=[]
             )
-            new_event.save()
-            return redirect('/info')
+            if new_event in models.Event.objects.all():
+                return redirect(f'/app/1/add_event')
+            else:
+                new_event.save()
+                return redirect('/info')
     else:
         return HttpResponse('No access')
 
@@ -131,7 +172,7 @@ def add_route_event(request, id_route):
 # To do ...
 def event_handler(request, event_id):
     if request.method == 'GET':
-        event = models.Event.objects.all().filter(id_route=event_id)
+        event = models.Event.objects.all().filter(id=event_id)
         return render(request, 'event_heandler.html', {'event': event})
 
 
