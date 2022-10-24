@@ -111,7 +111,7 @@ def route_info(request):
         app_event.start_date
         FROM app_route 
         JOIN app_event on 
-        app_route.id = app_event.id
+        app_route.id == app_event.id_route
         """
         cursor.execute(info)
         result = cursor.fetchall()
