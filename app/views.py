@@ -1,4 +1,5 @@
 import json
+from django.core.exceptions import ValidationError
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -75,11 +76,12 @@ def create_route(request):
             route_type = request.POST.get('route_type')
             duration = request.POST.get('duration')
 
-            intermediate_stop = json.loads(stopping_point)
+            models.validate_stopping_point(stopping_point)
+            stop_list = json.loads(stopping_point)
 
             with MongoDBConnection('admin', 'admin', '127.0.0.1') as db:
                 collect = db['stop_point']
-                stop_point = collect.insert_one({'points': intermediate_stop}).inserted_id
+                stop_point = collect.insert_one({'points': stop_list}).inserted_id
 
             str_object = models.Places.objects.get(name=start_point)
             dest_obj = models.Places.objects.get(name=destination)
@@ -94,7 +96,7 @@ def create_route(request):
                 duration=duration,
                 stopping_point=stop_point
             )
-
+            new_route.full_clean()
             new_route.save()
             return redirect('/info')
     else:
@@ -121,8 +123,12 @@ def add_route_event(request, id_route):
             if new_event in models.Event.objects.all():
                 return redirect(f'/app/1/add_event')
             else:
-                new_event.save()
-                return redirect('/info')
+                try:
+                    new_event.full_clean()
+                    new_event.save()
+                except ValidationError:
+                    return HttpResponse('Date error')
+            return redirect('/info')
     else:
         return HttpResponse('No access')
 

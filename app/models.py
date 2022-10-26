@@ -1,9 +1,38 @@
+from django.core.exceptions import ValidationError
+import json
+
 from django.db import models
 from django.utils.translation import gettext_lazy
 from django.utils import timezone
+from datetime import datetime
 
 
 # Create your models here.
+def validate_stopping_point(value):
+    try:
+        stopping = json.loads(value)
+        for itm in stopping:
+            if 'name' in itm and 'lat' in itm and 'lon' in itm:
+                continue
+            else:
+                raise ValidationError('ERROR')
+    except BaseException:
+        raise ValidationError('Not exists nursery field')
+
+
+def validate_route_type(value):
+    if value.title() not in ["Car", "Foot"]:
+        raise ValidationError('ERROR')
+
+
+def validate_date(value):
+    try:
+        parse_date = datetime.strptime(value, "%Y-%m-%d")
+    except BaseException:
+        raise ValidationError('ERROR')
+
+    if datetime.today() > parse_date:
+        raise ValidationError('ERROR')
 
 
 class Places(models.Model):
@@ -22,7 +51,8 @@ class Route(models.Model):
     country = models.CharField(max_length=50)
     location = models.CharField(max_length=120)
     description = models.TextField()
-    route_type = models.CharField(max_length=10, choices=RouteType.choices, default=RouteType.foot)
+    route_type = models.CharField(max_length=10, choices=RouteType.choices, default=RouteType.foot,
+                                  validators=[validate_route_type])
     duration = models.IntegerField()
 
 
@@ -36,8 +66,5 @@ class Event(models.Model):
     id_route = models.IntegerField()
     event_admin = models.IntegerField()
     event_users = models.CharField(max_length=50, null=True)
-    start_date = models.TextField(default=timezone.now)
+    start_date = models.DateField(validators=[validate_date])
     price = models.IntegerField()
-
-
-
