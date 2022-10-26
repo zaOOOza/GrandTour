@@ -5,8 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+<p>{{ route }}</p>
 {% block content %}
-    {% for el in event %}
+    {% for el in route %}
         <div class="event_handler">{% csrf_token %}
             <h5><a class="event">Event info</a></h5>
             <p class="card-text">Admin: {{ el.event_admin }}</p>

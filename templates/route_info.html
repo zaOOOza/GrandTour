@@ -2,41 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Info</title>
 </head>
 <body>
 {% csrf_token %}
 <button onclick="window.location.href='http://127.0.0.1:8000/login'">Login</button>
 <button onclick="window.location.href='http://127.0.0.1:8000/logout'">Logout</button>
 <button onclick="window.location.href='http://127.0.0.1:8000/app/create_route'">Create Route</button>
+<button onclick="window.location.href='http://127.0.0.1:8000/app/car'">Filter by car</button>
+<button onclick="window.location.href='http://127.0.0.1:8000/app/foot'">Filter by foot</button>
 <br>
-{% for route in routes %}
-<a href="{% url 'route:route_type' route.route_type %}"
-   class="btn btn-sm">filter</a>
-   {% endfor %}
-    <form action="app/1/add_event">
-        <input type="submit" value="Add event" name="review">
-    </form>
+
 
 {% block content %}
-    {% for route in routes %}
-        <div class="route_body">
-            <h5><a class="route_title">Route info</a></h5>
-            <form action="/app/{{ route.id }}/review">
-                <input type="submit" value="Review" name="review">
-            </form>
-            <p class="card-text">Country: {{ route.country }}</p>
-            <p class="card-text">Location: {{ route.location }}</p>
-            <p class="card-text">Description: {{ route.description }}</p>
-            <p class="card-text">Duration: {{ route.duration }}</p>
-            <p class="card-text">Route type: {{ route.route_type }}</p>
-            <p class="card-text">Event admin: {{ route.event_admin }}</p>
-            <p class="card-text">Approved User: {{ route.approved_user }}</p>
-            <p class="card-text">Pending User: {{ route.pending_user }}</p>
-            <p class="card-text">Price: {{ route.price }}</p>
-            <p class="card-text">Start date: {{ route.start_date }}</p>
-        </div>
+    <table>
+    <caption> Info about route</caption>
+    <tr>
+        <th>Country</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Duration</th>
+        <th>Route type</th>
+        <th>Event Admin</th>
+        <th>Event Users</th>
+        <th>Price</th>
+        <th>Start date</th>
+        <th>Pending user</th>
+        <th>Approved user</th>
+    </tr>
+        {% for route in routes %}
+    <tr>
+        <td>{{ route.country }}</td>
+        <td>{{ route.location }}</td>
+        <td>{{ route.description }}</td>
+        <td>{{ route.duration }}</td>
+        <td>{{ route.route_type }}</td>
+        <td>{{ route.event_admin }}</td>
+        <td>{{ route.event_users }}</td>
+        <td>{{ route.price }}</td>
+        <td>{{ route.start_date }}</td>
+        <td>{{ route.users_pending }}</td>
+        <td>{{ route.users_approved}}</td>
+
+    </tr>
     {% endfor %}
+    </table>
+
     {% if routes.has_previous %}
         <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
         <a class="btn btn-outline-info mb-4" href="?page{{ routes.previous_page_number }}">Privious</a>

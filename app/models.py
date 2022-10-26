@@ -17,7 +17,7 @@ class Route(models.Model):
         bicycle = 'bicycle', gettext_lazy('bicycle')
 
     start_point = models.IntegerField()
-    stopping_point = models.JSONField()
+    stopping_point = models.CharField(max_length=50)
     destination = models.IntegerField()
     country = models.CharField(max_length=50)
     location = models.CharField(max_length=120)
@@ -35,8 +35,7 @@ class Review(models.Model):
 class Event(models.Model):
     id_route = models.IntegerField()
     event_admin = models.IntegerField()
-    approved_user = models.JSONField()
-    pending_user = models.JSONField()
+    event_users = models.CharField(max_length=50, null=True)
     start_date = models.TextField(default=timezone.now)
     price = models.IntegerField()
 

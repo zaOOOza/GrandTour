@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accept user</title>
+</head>
+<body>
+<form action="approved_user" method="post">
+  {% csrf_token %}
+
+  <label for="user id">Choose user id:</label>
+  <select id="user id" name="user id">
+    {% for user in pending_users %}
+      <option value="{{user}}" name="Lala">{{ user }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit">
+</form>
+</body>
+</html>

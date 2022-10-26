@@ -21,8 +21,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('app/', include('app.urls')),
     path('event/<event_id>', views.event_handler, name='event_detail'),
+    path('event/<event_id>/add_me', views.add_me, name='add_me'),
+    path('event/<event_id>/approved_user', views.accept_user, name='accept_user'),
     path('login', views.user_login),
     path('registration', views.user_registration),
     path('logout', views.logout_user),
     path('info', views.route_info),
+
 ]
