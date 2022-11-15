@@ -1,0 +1,47 @@
+[
+{
+    "model": "app.review",
+    "pk": 1,
+    "fields": {
+        "route_id": 1,
+        "review": "Ololosha",
+        "review_rate": 4
+    }
+},
+{
+    "model": "app.review",
+    "pk": 2,
+    "fields": {
+        "route_id": 2,
+        "review": "asdad",
+        "review_rate": 7
+    }
+},
+{
+    "model": "app.review",
+    "pk": 3,
+    "fields": {
+        "route_id": 3,
+        "review": "fjhfh",
+        "review_rate": 6
+    }
+},
+{
+    "model": "app.review",
+    "pk": 4,
+    "fields": {
+        "route_id": 4,
+        "review": "hfgj",
+        "review_rate": 9
+    }
+},
+{
+    "model": "app.review",
+    "pk": 4,
+    "fields": {
+        "route_id": 5,
+        "review": "hfgjldfghl",
+        "review_rate": 10
+        }
+    }
+]

@@ -1,12 +1,10 @@
 from unittest.mock import patch
 
-from django.contrib.auth.models import User
-
 from django.test import TestCase, RequestFactory
 from django.test import Client
 
 from app.models import Review, Event
-from app.views import add_route_event
+from app.views import add_route_event, route_info
 
 
 class TestReview(TestCase):
@@ -84,3 +82,56 @@ class TestEvent(TestCase):
 
         itms = list(Event.objects.all().filter(price=488))
         self.assertEqual(1, itms[0].id_route)
+
+
+class TestReviewWithFixture(TestCase):
+    fixtures = ['review.json']
+
+    def test_receiving(self):
+        response = self.client.post('/app/review', {'route_id': 5})
+        parsed_resp = response.json()
+        self.assertEqual('hfgjldfghl', parsed_resp[0]['review'])
+
+
+class MokCollection:
+    def find_one(self, *args, **kwargs):
+        return {}
+
+
+class MongoClientMok:
+    def __init__(self, *args, **kwargs):
+        pass
+
+    def close(self):
+        pass
+
+    def __getitem__(self, item):
+        return {'stop_point': MokCollection()}
+
+
+class RouteInfoTestCase(TestCase):
+    fixtures = ['route.json']
+
+    def setUp(self):
+        self.factory = RequestFactory()
+
+        class UserMock:
+            def has_perm(self, *args, **kwargs):
+                return True
+
+            def is_authenticated(self, *args, **kwargs):
+                return True
+
+        self.user = UserMock()
+
+    def test_route_info_get(self):
+        resp = self.client.get('/info')
+        # redirect to log if user has no perm
+        self.assertEqual('/login', resp.url)
+
+    @patch('mongo_utils.MongoClient', MongoClientMok)
+    def test_route_info_post(self):
+        request = self.factory.get('/info')
+        request.user = self.user
+        response = route_info(request)
+        self.assertEqual(200, response.status_code)

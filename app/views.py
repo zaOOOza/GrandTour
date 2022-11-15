@@ -103,7 +103,7 @@ def create_route(request):
         return HttpResponse('No access')
 
 
-#@login_required(login_url='login')
+# @login_required(login_url='login')
 def add_route_event(request, id_route):
     if request.user.has_perm('add_route'):
         if request.method == 'GET':
@@ -111,7 +111,7 @@ def add_route_event(request, id_route):
         if request.method == 'POST':
             start_date = request.POST.get('start_date')
             price = request.POST.get('price')
-            #user_name = request.user.id
+            # user_name = request.user.id
             new_event = models.Event(
                 id_route=id_route,
                 start_date=start_date,
@@ -127,7 +127,7 @@ def add_route_event(request, id_route):
                 new_event.save()
             except ValidationError:
                 return HttpResponse('Date error')
-            #return redirect('/info')
+            # return redirect('/info')
             return HttpResponse('Test')
     else:
         return HttpResponse('No access', status=401)
@@ -180,9 +180,19 @@ def route_filter(request, route_type=None, country=None, location=None):
 
 
 # Info about rating route
-def route_review(request, id_route):
-    review = models.Review.objects.all().filter(route_id=id_route)
-    return render(request, 'route_review.html', {'reviews': review})
+def route_review(request):
+    if request.method == 'GET':
+        return render(request, 'route_review.html')
+
+    if request.method == 'POST':
+        result = models.Review.objects.all().filter(route_id=request.POST.get('route_id'))
+        if result:
+            return HttpResponse(json.dumps([{"route_id": i.route_id,
+                                             "review": i.review,
+                                             "review_rate": i.review_rate} for i in result]),
+                                content_type='application/json')
+        else:
+            return HttpResponse('No found review', status=404)
 
 
 # Add new event to DataBase
@@ -308,5 +318,3 @@ def accept_user(request, event_id):
             all_user['approved'].append(approved_user)
             event_user.update_one({'_id': ObjectId(event.event_users)}, {'$set': all_user}, upsert=False)
             return HttpResponse('User is accepted')
-
-

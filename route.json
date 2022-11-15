@@ -1,0 +1,693 @@
+[
+{
+    "model": "app.places",
+    "pk": 1,
+    "fields": {
+        "name": "Ukraine"
+    }
+},
+{
+    "model": "app.places",
+    "pk": 2,
+    "fields": {
+        "name": "Kyiv"
+    }
+},
+{
+    "model": "app.places",
+    "pk": 3,
+    "fields": {
+        "name": "Colorado"
+    }
+},
+{
+    "model": "app.route",
+    "pk": 1,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355df1dfd0d089c03d2f1c2",
+        "destination": 2,
+        "country": "Ukrain",
+        "location": "Kyiv",
+        "description": "alala",
+        "route_type": "car",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 2,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355e11c691eb2c63336625a",
+        "destination": 1,
+        "country": "Italy",
+        "location": "Milan",
+        "description": "adsads",
+        "route_type": "foot",
+        "duration": 1
+    }
+},
+{
+    "model": "app.route",
+    "pk": 3,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355e11dc3794736c324d0cb",
+        "destination": 2,
+        "country": "Ukraine",
+        "location": "Kyiv ",
+        "description": "asd",
+        "route_type": "car",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 4,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355e11f2645f6015b068b0f",
+        "destination": 2,
+        "country": "Ukraine",
+        "location": "Kyiv ",
+        "description": "asdasd",
+        "route_type": "foot",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 5,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355e120727f2bc2a139ce93",
+        "destination": 3,
+        "country": "Ukraine",
+        "location": "Kyiv ",
+        "description": "asd",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 6,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e12181fad0e739abd8e9",
+        "destination": 1,
+        "country": "Italy",
+        "location": "Milan",
+        "description": "kl;;klkl;",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 7,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e122226cf8e793f84352",
+        "destination": 1,
+        "country": "Italy",
+        "location": "Milan",
+        "description": "kl;;klkl;",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 8,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e123657eea152f0b7065",
+        "destination": 1,
+        "country": "Italy",
+        "location": "Milan",
+        "description": "kl;;klkl;",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 9,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e124992b0dc8854aa42a",
+        "destination": 1,
+        "country": "Italy",
+        "location": "Milan",
+        "description": "kl;;klkl;",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 10,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355e1250878565dced2a3a7",
+        "destination": 3,
+        "country": "Georgia",
+        "location": "Jyordan",
+        "description": "hjghj",
+        "route_type": "foot",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 11,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e126ab52a31f6dae5b53",
+        "destination": 1,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "fsdfdfghhjnjhj",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 12,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e127486a3ea2a1ffe3a8",
+        "destination": 1,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "fsdfdfghhjnjhj",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 13,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e1288e12abb2a2544ee5",
+        "destination": 1,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "fsdfdfghhjnjhj",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 14,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355e12e3cd149fbbe90a594",
+        "destination": 3,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "fsdfdfghhjnjhj",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 15,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355e12fe637c30154b53455",
+        "destination": 3,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "fsdfdfghhjnjhj",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 16,
+    "fields": {
+        "start_point": 1,
+        "stopping_point": "6355e131c9726e2ee3e9a940",
+        "destination": 3,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "fsdfdfghhjnjhj",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 17,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e132d7e9409d546ae7a2",
+        "destination": 1,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "kliukjl",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 18,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e1336ed7111c39c01aac",
+        "destination": 1,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "kliukjl",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 19,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355e1349b74dcd3d8ee8f91",
+        "destination": 1,
+        "country": "Polska",
+        "location": "Wroclav",
+        "description": "kliukjl",
+        "route_type": "car",
+        "duration": 3
+    }
+},
+{
+    "model": "app.route",
+    "pk": 20,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355f45930867f2d4452aea0",
+        "destination": 1,
+        "country": "Polska",
+        "location": "wroclav",
+        "description": "sdddd",
+        "route_type": "car",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 21,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355f48fd143248e6269e21c",
+        "destination": 1,
+        "country": "Polska",
+        "location": "wroclav",
+        "description": "kliukjl",
+        "route_type": "foot",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 22,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355f4abd143248e6269e21f",
+        "destination": 1,
+        "country": "Polska",
+        "location": "wroclav",
+        "description": "ghjghjkg",
+        "route_type": "foot",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 23,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355f515c343cc66aea69905",
+        "destination": 1,
+        "country": "Polska",
+        "location": "wroclav",
+        "description": "jklghj",
+        "route_type": "foot",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 24,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355f5330c2fc7d9a38fc878",
+        "destination": 1,
+        "country": "Polska",
+        "location": "wroclav",
+        "description": "cvncvncn",
+        "route_type": "foot",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 25,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355f5430c2fc7d9a38fc87c",
+        "destination": 1,
+        "country": "Polska",
+        "location": "wroclav",
+        "description": "xcvbxcrty",
+        "route_type": "foot",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 26,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355f567902f804d90f3eaa6",
+        "destination": 1,
+        "country": "Polska",
+        "location": "wroclav",
+        "description": "fjfjfnb",
+        "route_type": "foot",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 27,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6355f64913b758d560675886",
+        "destination": 1,
+        "country": "Polska",
+        "location": "wroclav",
+        "description": "vcbnvbn",
+        "route_type": "foot",
+        "duration": 2
+    }
+},
+{
+    "model": "app.route",
+    "pk": 28,
+    "fields": {
+        "start_point": 3,
+        "stopping_point": "6359c371ffdea37147416630",
+        "destination": 1,
+        "country": "Polska",
+        "location": "Malta",
+        "description": "OLkanor",
+        "route_type": "car",
+        "duration": 7
+    }
+},
+{
+    "model": "app.review",
+    "pk": 1,
+    "fields": {
+        "route_id": 1,
+        "review": "Ololosha",
+        "review_rate": 4
+    }
+},
+{
+    "model": "app.review",
+    "pk": 2,
+    "fields": {
+        "route_id": 2,
+        "review": "asdad",
+        "review_rate": 7
+    }
+},
+{
+    "model": "app.review",
+    "pk": 3,
+    "fields": {
+        "route_id": 3,
+        "review": "fjhfh",
+        "review_rate": 6
+    }
+},
+{
+    "model": "app.review",
+    "pk": 4,
+    "fields": {
+        "route_id": 4,
+        "review": "hfgj",
+        "review_rate": 9
+    }
+},
+{
+    "model": "app.event",
+    "pk": 1,
+    "fields": {
+        "id_route": 1,
+        "event_admin": 1,
+        "event_users": "6359932ffd962ee996e04c1f",
+        "start_date": "2022-03-12",
+        "price": 200
+    }
+},
+{
+    "model": "app.event",
+    "pk": 2,
+    "fields": {
+        "id_route": 2,
+        "event_admin": 3,
+        "event_users": "6359934a85f737767b12feb4",
+        "start_date": "2022-03-12",
+        "price": 5000
+    }
+},
+{
+    "model": "app.event",
+    "pk": 3,
+    "fields": {
+        "id_route": 3,
+        "event_admin": 1,
+        "event_users": "dfgdb",
+        "start_date": "2022-03-12",
+        "price": 3000
+    }
+},
+{
+    "model": "app.event",
+    "pk": 4,
+    "fields": {
+        "id_route": 4,
+        "event_admin": 1,
+        "event_users": "6359a32417f68ba332420521",
+        "start_date": "2022-03-12",
+        "price": 8000
+    }
+},
+{
+    "model": "app.event",
+    "pk": 5,
+    "fields": {
+        "id_route": 5,
+        "event_admin": 1,
+        "event_users": "xcvbxcv",
+        "start_date": "2022-03-12",
+        "price": 8000
+    }
+},
+{
+    "model": "app.event",
+    "pk": 6,
+    "fields": {
+        "id_route": 6,
+        "event_admin": 1,
+        "event_users": "xcv",
+        "start_date": "2022-03-12",
+        "price": 12333
+    }
+},
+{
+    "model": "app.event",
+    "pk": 7,
+    "fields": {
+        "id_route": 7,
+        "event_admin": 1,
+        "event_users": "xcbvcvb",
+        "start_date": "2022-03-12",
+        "price": 12333
+    }
+},
+{
+    "model": "app.event",
+    "pk": 8,
+    "fields": {
+        "id_route": 8,
+        "event_admin": 1,
+        "event_users": "fa",
+        "start_date": "2022-03-12",
+        "price": 12333
+    }
+},
+{
+    "model": "app.event",
+    "pk": 9,
+    "fields": {
+        "id_route": 9,
+        "event_admin": 1,
+        "event_users": "sdf",
+        "start_date": "2022-03-12",
+        "price": 55555
+    }
+},
+{
+    "model": "app.event",
+    "pk": 10,
+    "fields": {
+        "id_route": 10,
+        "event_admin": 1,
+        "event_users": "sd",
+        "start_date": "2022-03-12",
+        "price": 5567567
+    }
+},
+{
+    "model": "app.event",
+    "pk": 11,
+    "fields": {
+        "id_route": 11,
+        "event_admin": 1,
+        "event_users": "cvb",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 12,
+    "fields": {
+        "id_route": 12,
+        "event_admin": 1,
+        "event_users": "cvb",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 13,
+    "fields": {
+        "id_route": 13,
+        "event_admin": 1,
+        "event_users": "cvb",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 14,
+    "fields": {
+        "id_route": 14,
+        "event_admin": 1,
+        "event_users": "vbccvb",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 15,
+    "fields": {
+        "id_route": 15,
+        "event_admin": 1,
+        "event_users": "6359934e29ace800013756b4",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 16,
+    "fields": {
+        "id_route": 16,
+        "event_admin": 1,
+        "event_users": "fsd",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 17,
+    "fields": {
+        "id_route": 17,
+        "event_admin": 1,
+        "event_users": "fsd",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 18,
+    "fields": {
+        "id_route": 18,
+        "event_admin": 1,
+        "event_users": "fsd",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 19,
+    "fields": {
+        "id_route": 19,
+        "event_admin": 1,
+        "event_users": "sdf",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 20,
+    "fields": {
+        "id_route": 20,
+        "event_admin": 1,
+        "event_users": "xzc",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 21,
+    "fields": {
+        "id_route": 21,
+        "event_admin": 1,
+        "event_users": "63599481937fa26dc5c2005f",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+},
+{
+    "model": "app.event",
+    "pk": 32,
+    "fields": {
+        "id_route": 22,
+        "event_admin": 1,
+        "event_users": "zxc",
+        "start_date": "2022-03-12",
+        "price": 900444
+    }
+}
+]
