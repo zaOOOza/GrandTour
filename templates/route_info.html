@@ -27,8 +27,6 @@
         <th>Event Users</th>
         <th>Price</th>
         <th>Start date</th>
-        <th>Pending user</th>
-        <th>Approved user</th>
     </tr>
         {% for route in routes %}
     <tr>
@@ -41,8 +39,6 @@
         <td>{{ route.event_users }}</td>
         <td>{{ route.price }}</td>
         <td>{{ route.start_date }}</td>
-        <td>{{ route.users_pending }}</td>
-        <td>{{ route.users_approved}}</td>
 
     </tr>
     {% endfor %}

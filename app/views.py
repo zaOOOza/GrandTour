@@ -103,7 +103,7 @@ def create_route(request):
         return HttpResponse('No access')
 
 
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def add_route_event(request, id_route):
     if request.user.has_perm('add_route'):
         if request.method == 'GET':
@@ -111,26 +111,26 @@ def add_route_event(request, id_route):
         if request.method == 'POST':
             start_date = request.POST.get('start_date')
             price = request.POST.get('price')
-            user_name = request.user.id
+            #user_name = request.user.id
             new_event = models.Event(
                 id_route=id_route,
                 start_date=start_date,
                 price=price,
-                event_admin=user_name,
-                approved_user=[],
-                pending_user=[]
+                event_admin=1,
+                event_users='asdasd'
             )
-            if new_event in models.Event.objects.all():
-                return redirect(f'/app/1/add_event')
-            else:
-                try:
-                    new_event.full_clean()
-                    new_event.save()
-                except ValidationError:
-                    return HttpResponse('Date error')
-            return redirect('/info')
+            # if new_event in models.Event.objects.all():
+            #     return redirect(f'/app/1/add_event')
+            # else:
+            try:
+                new_event.full_clean()
+                new_event.save()
+            except ValidationError:
+                return HttpResponse('Date error')
+            #return redirect('/info')
+            return HttpResponse('Test')
     else:
-        return HttpResponse('No access')
+        return HttpResponse('No access', status=401)
 
 
 def route_filter(request, route_type=None, country=None, location=None):

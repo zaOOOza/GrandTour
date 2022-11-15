@@ -3,11 +3,9 @@ import json
 
 from django.db import models
 from django.utils.translation import gettext_lazy
-from django.utils import timezone
-from datetime import datetime
-
-
+import datetime
 # Create your models here.
+
 def validate_stopping_point(value):
     try:
         stopping = json.loads(value)
@@ -26,13 +24,13 @@ def validate_route_type(value):
 
 
 def validate_date(value):
-    try:
-        parse_date = datetime.strptime(value, "%Y-%m-%d")
-    except BaseException:
-        raise ValidationError('ERROR')
+    # try:
+    #     parse_date = datetime.strptime(str(value), "%Y-%m-%d")
+    # except BaseException:
+    #     raise ValidationError('ERROR date format')
 
-    if datetime.today() > parse_date:
-        raise ValidationError('ERROR')
+    if datetime.date.today() > value:
+        raise ValidationError('ERROR date should be in future')
 
 
 class Places(models.Model):
